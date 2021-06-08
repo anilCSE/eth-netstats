@@ -313,15 +313,15 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				break;
 
 			case "blockPropagationChart":
-				$scope.blockPropagationChart = data.histogram;
-				$scope.blockPropagationAvg = data.avg;
+				// $scope.blockPropagationChart = data.histogram;
+				// $scope.blockPropagationAvg = data.avg;
 
 				break;
 
 			case "uncleCount":
-				$scope.uncleCount = data[0] + data[1];
-				data.reverse();
-				$scope.uncleCountChart = data;
+				// $scope.uncleCount = data[0] + data[1];
+				// data.reverse();
+				// $scope.uncleCountChart = data;
 
 				break;
 
@@ -329,40 +329,40 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				if( !_.isEqual($scope.avgBlockTime, data.avgBlocktime) )
 					$scope.avgBlockTime = data.avgBlocktime;
 
-				if( !_.isEqual($scope.avgHashrate, data.avgHashrate) )
-					$scope.avgHashrate = data.avgHashrate;
+				// if( !_.isEqual($scope.avgHashrate, data.avgHashrate) )
+				// 	$scope.avgHashrate = data.avgHashrate;
 
-				if( !_.isEqual($scope.lastGasLimit, data.gasLimit) && data.gasLimit.length >= MAX_BINS )
-					$scope.lastGasLimit = data.gasLimit;
+				// if( !_.isEqual($scope.lastGasLimit, data.gasLimit) && data.gasLimit.length >= MAX_BINS )
+				// 	$scope.lastGasLimit = data.gasLimit;
 
-				if( !_.isEqual($scope.lastBlocksTime, data.blocktime) && data.blocktime.length >= MAX_BINS )
-					$scope.lastBlocksTime = data.blocktime;
+				// if( !_.isEqual($scope.lastBlocksTime, data.blocktime) && data.blocktime.length >= MAX_BINS )
+				// 	$scope.lastBlocksTime = data.blocktime;
 
-				if( !_.isEqual($scope.difficultyChart, data.difficulty) && data.difficulty.length >= MAX_BINS )
-					$scope.difficultyChart = data.difficulty;
+				// if( !_.isEqual($scope.difficultyChart, data.difficulty) && data.difficulty.length >= MAX_BINS )
+				// 	$scope.difficultyChart = data.difficulty;
 
-				if( !_.isEqual($scope.blockPropagationChart, data.propagation.histogram) ) {
-					$scope.blockPropagationChart = data.propagation.histogram;
-					$scope.blockPropagationAvg = data.propagation.avg;
-				}
+				// if( !_.isEqual($scope.blockPropagationChart, data.propagation.histogram) ) {
+				// 	$scope.blockPropagationChart = data.propagation.histogram;
+				// 	$scope.blockPropagationAvg = data.propagation.avg;
+				// }
 
-				data.uncleCount.reverse();
+				// data.uncleCount.reverse();
 
-				if( !_.isEqual($scope.uncleCountChart, data.uncleCount) && data.uncleCount.length >= MAX_BINS ) {
-					$scope.uncleCount = data.uncleCount[data.uncleCount.length-2] + data.uncleCount[data.uncleCount.length-1];
-					$scope.uncleCountChart = data.uncleCount;
-				}
+				// if( !_.isEqual($scope.uncleCountChart, data.uncleCount) && data.uncleCount.length >= MAX_BINS ) {
+				// 	$scope.uncleCount = data.uncleCount[data.uncleCount.length-2] + data.uncleCount[data.uncleCount.length-1];
+				// 	$scope.uncleCountChart = data.uncleCount;
+				// }
 
-				if( !_.isEqual($scope.transactionDensity, data.transactions) && data.transactions.length >= MAX_BINS )
-					$scope.transactionDensity = data.transactions;
+				// if( !_.isEqual($scope.transactionDensity, data.transactions) && data.transactions.length >= MAX_BINS )
+				// 	$scope.transactionDensity = data.transactions;
 
-				if( !_.isEqual($scope.gasSpending, data.gasSpending) && data.gasSpending.length >= MAX_BINS )
-					$scope.gasSpending = data.gasSpending;
+				// if( !_.isEqual($scope.gasSpending, data.gasSpending) && data.gasSpending.length >= MAX_BINS )
+				// 	$scope.gasSpending = data.gasSpending;
 
-				if( !_.isEqual($scope.miners, data.miners) ) {
-					$scope.miners = data.miners;
-					getMinersNames();
-				}
+				// if( !_.isEqual($scope.miners, data.miners) ) {
+				// 	$scope.miners = data.miners;
+				// 	getMinersNames();
+				// }
 
 				break;
 
@@ -491,18 +491,18 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 		}, 0) / $scope.nodes.length;
 
 		$scope.map = _.map($scope.nodes, function (node) {
-			var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
+			// var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
 
-			if(node.geo != null)
-				return {
-					radius: 3,
-					latitude: node.geo.ll[0],
-					longitude: node.geo.ll[1],
-					nodeName: node.info.name,
-					fillClass: "text-" + fill,
-					fillKey: fill,
-				};
-			else
+			// if(node.geo != null)
+			// 	return {
+			// 		radius: 3,
+			// 		latitude: node.geo.ll[0],
+			// 		longitude: node.geo.ll[1],
+			// 		nodeName: node.info.name,
+			// 		fillClass: "text-" + fill,
+			// 		fillKey: fill,
+			// 	};
+			// else
 				return {
 					radius: 0,
 					latitude: 0,
