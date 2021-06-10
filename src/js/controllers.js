@@ -207,7 +207,7 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 							data.stats.block.arrived = best.arrived;
 						}
 
-						$scope.nodes[index].history = data.history;
+						//$scope.nodes[index].history = data.history;
 					}
 
 					$scope.nodes[index].stats = data.stats;
@@ -241,7 +241,7 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 							data.block.arrived = best.arrived;
 						}
 
-						$scope.nodes[index].history = data.history;
+						// $scope.nodes[index].history = data.history;
 					}
 
 					$scope.nodes[index].stats.block = data.block;
@@ -275,9 +275,9 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 					if( !_.isUndefined(node) && !_.isUndefined(node.stats) )
 					{
 						$scope.nodes[index].stats.active = data.stats.active;
-						$scope.nodes[index].stats.mining = data.stats.mining;
-						$scope.nodes[index].stats.hashrate = data.stats.hashrate;
-						$scope.nodes[index].stats.peers = data.stats.peers;
+						// $scope.nodes[index].stats.mining = data.stats.mining;
+						// $scope.nodes[index].stats.hashrate = data.stats.hashrate;
+						// $scope.nodes[index].stats.peers = data.stats.peers;
 						$scope.nodes[index].stats.gasPrice = data.stats.gasPrice;
 						$scope.nodes[index].stats.uptime = data.stats.uptime;
 
@@ -332,11 +332,11 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				// if( !_.isEqual($scope.avgHashrate, data.avgHashrate) )
 				// 	$scope.avgHashrate = data.avgHashrate;
 
-				// if( !_.isEqual($scope.lastGasLimit, data.gasLimit) && data.gasLimit.length >= MAX_BINS )
-				// 	$scope.lastGasLimit = data.gasLimit;
+				if( !_.isEqual($scope.lastGasLimit, data.gasLimit) && data.gasLimit.length >= MAX_BINS )
+					$scope.lastGasLimit = data.gasLimit;
 
-				// if( !_.isEqual($scope.lastBlocksTime, data.blocktime) && data.blocktime.length >= MAX_BINS )
-				// 	$scope.lastBlocksTime = data.blocktime;
+				if( !_.isEqual($scope.lastBlocksTime, data.blocktime) && data.blocktime.length >= MAX_BINS )
+					$scope.lastBlocksTime = data.blocktime;
 
 				// if( !_.isEqual($scope.difficultyChart, data.difficulty) && data.difficulty.length >= MAX_BINS )
 				// 	$scope.difficultyChart = data.difficulty;
@@ -356,8 +356,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				// if( !_.isEqual($scope.transactionDensity, data.transactions) && data.transactions.length >= MAX_BINS )
 				// 	$scope.transactionDensity = data.transactions;
 
-				// if( !_.isEqual($scope.gasSpending, data.gasSpending) && data.gasSpending.length >= MAX_BINS )
-				// 	$scope.gasSpending = data.gasSpending;
+				if( !_.isEqual($scope.gasSpending, data.gasSpending) && data.gasSpending.length >= MAX_BINS )
+					$scope.gasSpending = data.gasSpending;
 
 				// if( !_.isEqual($scope.miners, data.miners) ) {
 				// 	$scope.miners = data.miners;
@@ -443,8 +443,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 		if( _.isUndefined(data.history) )
 		{
-			data.history = new Array(40);
-			_.fill(data.history, -1);
+			// data.history = new Array(40);
+			// _.fill(data.history, -1);
 		}
 
 		if( index < 0 )
@@ -463,10 +463,10 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 		data.pinned = ( !_.isUndefined($scope.nodes[index].pinned) ? $scope.nodes[index].pinned : false);
 
-		if( !_.isUndefined($scope.nodes[index].history) )
-		{
-			data.history = $scope.nodes[index].history;
-		}
+		// if( !_.isUndefined($scope.nodes[index].history) )
+		// {
+		// 	data.history = $scope.nodes[index].history;
+		// }
 
 		$scope.nodes[index] = data;
 
@@ -515,8 +515,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 	{
 		if( $scope.nodes.length )
 		{
-			var chains = {};
-			var maxScore = 0;
+			// var chains = {};
+			// var maxScore = 0;
 
 			// _($scope.nodes)
 			// 	.map(function (item)
@@ -568,7 +568,7 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				}).stats;
 
 				$scope.lastBlock = $scope.bestStats.block.arrived;
-				$scope.lastDifficulty = $scope.bestStats.block.difficulty;
+				// $scope.lastDifficulty = $scope.bestStats.block.difficulty;
 			}
 		}
 	}
