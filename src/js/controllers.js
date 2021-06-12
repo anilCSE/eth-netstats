@@ -3,7 +3,7 @@
 
 netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, socket, _, toastr) {
 
-	var MAX_BINS = 40;
+	var MAX_BINS = 10;
 
 	// Main Stats init
 	// ---------------
@@ -95,7 +95,7 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 	var timeout = setInterval(function ()
 	{
 		$scope.$apply();
-	}, 300);
+	}, 2000);
 
 	$scope.getNumber = function (num) {
 		return new Array(num);
@@ -147,8 +147,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				_.forEach($scope.nodes, function (node, index) {
 
 					// Init hashrate
-					if( _.isUndefined(node.stats.hashrate) )
-						node.stats.hashrate = 0;
+					// if( _.isUndefined(node.stats.hashrate) )
+					// 	node.stats.hashrate = 0;
 
 					// Init latency
 					latencyFilter(node);
@@ -192,8 +192,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 					if( !_.isUndefined($scope.nodes[index].stats.latency) )
 						data.stats.latency = $scope.nodes[index].stats.latency;
 
-					if( _.isUndefined(data.stats.hashrate) )
-						data.stats.hashrate = 0;
+					// if( _.isUndefined(data.stats.hashrate) )
+					// 	data.stats.hashrate = 0;
 
 					if( $scope.nodes[index].stats.block.number < data.stats.block.number )
 					{
@@ -275,8 +275,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 					if( !_.isUndefined(node) && !_.isUndefined(node.stats) )
 					{
 						$scope.nodes[index].stats.active = data.stats.active;
-						$scope.nodes[index].stats.mining = data.stats.mining;
-						$scope.nodes[index].stats.hashrate = data.stats.hashrate;
+						// $scope.nodes[index].stats.mining = data.stats.mining;
+						// $scope.nodes[index].stats.hashrate = data.stats.hashrate;
 						$scope.nodes[index].stats.peers = data.stats.peers;
 						$scope.nodes[index].stats.gasPrice = data.stats.gasPrice;
 						$scope.nodes[index].stats.uptime = data.stats.uptime;
@@ -294,43 +294,30 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 				break;
 
-			case "info":
-				var index = findIndex({id: data.id});
+			// case "info":
+			// 	var index = findIndex({id: data.id});
 
-				if( index >= 0 )
-				{
-					$scope.nodes[index].info = data.info;
+			// 	if( index >= 0 )
+			// 	{
+			// 		$scope.nodes[index].info = data.info;
 
-					if( _.isUndefined($scope.nodes[index].pinned) )
-						$scope.nodes[index].pinned = false;
+			// 		if( _.isUndefined($scope.nodes[index].pinned) )
+			// 			$scope.nodes[index].pinned = false;
 
-					// Init latency
-					latencyFilter($scope.nodes[index]);
+			// 		// Init latency
+			// 		latencyFilter($scope.nodes[index]);
 
-					updateActiveNodes();
-				}
+			// 		updateActiveNodes();
+			// 	}
 
-				break;
-
-			case "blockPropagationChart":
-				$scope.blockPropagationChart = data.histogram;
-				$scope.blockPropagationAvg = data.avg;
-
-				break;
-
-			case "uncleCount":
-				$scope.uncleCount = data[0] + data[1];
-				data.reverse();
-				$scope.uncleCountChart = data;
-
-				break;
+			// 	break;
 
 			case "charts":
 				if( !_.isEqual($scope.avgBlockTime, data.avgBlocktime) )
 					$scope.avgBlockTime = data.avgBlocktime;
 
-				if( !_.isEqual($scope.avgHashrate, data.avgHashrate) )
-					$scope.avgHashrate = data.avgHashrate;
+				// if( !_.isEqual($scope.avgHashrate, data.avgHashrate) )
+				// 	$scope.avgHashrate = data.avgHashrate;
 
 				if( !_.isEqual($scope.lastGasLimit, data.gasLimit) && data.gasLimit.length >= MAX_BINS )
 					$scope.lastGasLimit = data.gasLimit;
@@ -338,31 +325,31 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				if( !_.isEqual($scope.lastBlocksTime, data.blocktime) && data.blocktime.length >= MAX_BINS )
 					$scope.lastBlocksTime = data.blocktime;
 
-				if( !_.isEqual($scope.difficultyChart, data.difficulty) && data.difficulty.length >= MAX_BINS )
-					$scope.difficultyChart = data.difficulty;
+				// if( !_.isEqual($scope.difficultyChart, data.difficulty) && data.difficulty.length >= MAX_BINS )
+				// 	$scope.difficultyChart = data.difficulty;
 
-				if( !_.isEqual($scope.blockPropagationChart, data.propagation.histogram) ) {
-					$scope.blockPropagationChart = data.propagation.histogram;
-					$scope.blockPropagationAvg = data.propagation.avg;
-				}
+				// if( !_.isEqual($scope.blockPropagationChart, data.propagation.histogram) ) {
+				// 	$scope.blockPropagationChart = data.propagation.histogram;
+				// 	$scope.blockPropagationAvg = data.propagation.avg;
+				// }
 
-				data.uncleCount.reverse();
+				// data.uncleCount.reverse();
 
-				if( !_.isEqual($scope.uncleCountChart, data.uncleCount) && data.uncleCount.length >= MAX_BINS ) {
-					$scope.uncleCount = data.uncleCount[data.uncleCount.length-2] + data.uncleCount[data.uncleCount.length-1];
-					$scope.uncleCountChart = data.uncleCount;
-				}
+				// if( !_.isEqual($scope.uncleCountChart, data.uncleCount) && data.uncleCount.length >= MAX_BINS ) {
+				// 	$scope.uncleCount = data.uncleCount[data.uncleCount.length-2] + data.uncleCount[data.uncleCount.length-1];
+				// 	$scope.uncleCountChart = data.uncleCount;
+				// }
 
-				if( !_.isEqual($scope.transactionDensity, data.transactions) && data.transactions.length >= MAX_BINS )
-					$scope.transactionDensity = data.transactions;
+				// if( !_.isEqual($scope.transactionDensity, data.transactions) && data.transactions.length >= MAX_BINS )
+				// 	$scope.transactionDensity = data.transactions;
 
 				if( !_.isEqual($scope.gasSpending, data.gasSpending) && data.gasSpending.length >= MAX_BINS )
 					$scope.gasSpending = data.gasSpending;
 
-				if( !_.isEqual($scope.miners, data.miners) ) {
-					$scope.miners = data.miners;
-					getMinersNames();
-				}
+				// if( !_.isEqual($scope.miners, data.miners) ) {
+				// 	$scope.miners = data.miners;
+				// 	getMinersNames();
+				// }
 
 				break;
 
@@ -449,10 +436,10 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 		if( index < 0 )
 		{
-			if( !_.isUndefined(data.stats) && _.isUndefined(data.stats.hashrate) )
-			{
-				data.stats.hashrate = 0;
-			}
+			// if( !_.isUndefined(data.stats) && _.isUndefined(data.stats.hashrate) )
+			// {
+			// 	data.stats.hashrate = 0;
+			// }
 
 			data.pinned = false;
 
