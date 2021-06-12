@@ -144,25 +144,25 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 			case "init":
 				$scope.nodes = data;
 
-				_.forEach($scope.nodes, function (node, index) {
+				// _.forEach($scope.nodes, function (node, index) {
 
-					// Init hashrate
-					// if( _.isUndefined(node.stats.hashrate) )
-					// 	node.stats.hashrate = 0;
+				// 	// Init hashrate
+				// 	// if( _.isUndefined(node.stats.hashrate) )
+				// 	// 	node.stats.hashrate = 0;
 
-					// Init latency
-					latencyFilter(node);
+				// 	// Init latency
+				// 	latencyFilter(node);
 
-					// Init history
-					if( _.isUndefined(data.history) )
-					{
-						data.history = new Array(40);
-						_.fill(data.history, -1);
-					}
+				// 	// Init history
+				// 	if( _.isUndefined(data.history) )
+				// 	{
+				// 		data.history = new Array(40);
+				// 		_.fill(data.history, -1);
+				// 	}
 
-					// Init or recover pin
-					node.pinned = ($scope.pinned.indexOf(node.id) >= 0 ? true : false);
-				});
+				// 	// Init or recover pin
+				// 	node.pinned = ($scope.pinned.indexOf(node.id) >= 0 ? true : false);
+				// });
 
 				if( $scope.nodes.length > 0 )
 				{
