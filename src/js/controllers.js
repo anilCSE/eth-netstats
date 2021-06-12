@@ -189,8 +189,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 				if( index >= 0 && !_.isUndefined($scope.nodes[index]) && !_.isUndefined($scope.nodes[index].stats) )
 				{
-					if( !_.isUndefined($scope.nodes[index].stats.latency) )
-						data.stats.latency = $scope.nodes[index].stats.latency;
+					// if( !_.isUndefined($scope.nodes[index].stats.latency) )
+					// 	data.stats.latency = $scope.nodes[index].stats.latency;
 
 					// if( _.isUndefined(data.stats.hashrate) )
 					// 	data.stats.hashrate = 0;
@@ -294,7 +294,7 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 				break;
 
-			// case "info":
+			case "info":
 			// 	var index = findIndex({id: data.id});
 
 			// 	if( index >= 0 )
@@ -307,10 +307,10 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 			// 		// Init latency
 			// 		latencyFilter($scope.nodes[index]);
 
-			// 		updateActiveNodes();
+					updateActiveNodes();
 			// 	}
 
-			// 	break;
+				break;
 
 			case "charts":
 				if( !_.isEqual($scope.avgBlockTime, data.avgBlocktime) )
