@@ -212,12 +212,12 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 					$scope.nodes[index].stats = data.stats;
 
-					if( !_.isUndefined(data.stats.latency) && _.get($scope.nodes[index], 'stats.latency', 0) !== data.stats.latency )
-					{
-						$scope.nodes[index].stats.latency = data.stats.latency;
+					// if( !_.isUndefined(data.stats.latency) && _.get($scope.nodes[index], 'stats.latency', 0) !== data.stats.latency )
+					// {
+					// 	$scope.nodes[index].stats.latency = data.stats.latency;
 
-						latencyFilter($scope.nodes[index]);
-					}
+					// 	latencyFilter($scope.nodes[index]);
+					// }
 
 					updateBestBlock();
 				}
@@ -241,7 +241,7 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 							data.block.arrived = best.arrived;
 						}
 
-						$scope.nodes[index].history = data.history;
+						// $scope.nodes[index].history = data.history;
 					}
 
 					$scope.nodes[index].stats.block = data.block;
@@ -281,12 +281,12 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 						$scope.nodes[index].stats.gasPrice = data.stats.gasPrice;
 						$scope.nodes[index].stats.uptime = data.stats.uptime;
 
-						if( !_.isUndefined(data.stats.latency) && _.get($scope.nodes[index], 'stats.latency', 0) !== data.stats.latency )
-						{
-							$scope.nodes[index].stats.latency = data.stats.latency;
+						// if( !_.isUndefined(data.stats.latency) && _.get($scope.nodes[index], 'stats.latency', 0) !== data.stats.latency )
+						// {
+						// 	$scope.nodes[index].stats.latency = data.stats.latency;
 
-							latencyFilter($scope.nodes[index]);
-						}
+						// 	latencyFilter($scope.nodes[index]);
+						// }
 
 						updateActiveNodes();
 					}
@@ -369,21 +369,21 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				break;
 
 			case "latency":
-				if( !_.isUndefined(data.id) && !_.isUndefined(data.latency) )
-				{
-					var index = findIndex({id: data.id});
+			// 	if( !_.isUndefined(data.id) && !_.isUndefined(data.latency) )
+			// 	{
+			// 		var index = findIndex({id: data.id});
 
-					if( index >= 0 )
-					{
-						var node = $scope.nodes[index];
+			// 		if( index >= 0 )
+			// 		{
+			// 			var node = $scope.nodes[index];
 
-						if( !_.isUndefined(node) && !_.isUndefined(node.stats) && !_.isUndefined(node.stats.latency) && node.stats.latency !== data.latency )
-						{
-							node.stats.latency = data.latency;
-							latencyFilter(node);
-						}
-					}
-				}
+			// 			if( !_.isUndefined(node) && !_.isUndefined(node.stats) && !_.isUndefined(node.stats.latency) && node.stats.latency !== data.latency )
+			// 			{
+			// 				node.stats.latency = data.latency;
+			// 				latencyFilter(node);
+			// 			}
+			// 		}
+			// 	}
 
 				break;
 
@@ -477,24 +477,24 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 			return total + node.stats.uptime;
 		}, 0) / $scope.nodes.length;
 
-		$scope.map = _.map($scope.nodes, function (node) {
-			var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
+		$scope.map = _.map([], function (node) {
+			// var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
 
-			if(node.geo != null)
-				return {
-					radius: 3,
-					latitude: node.geo.ll[0],
-					longitude: node.geo.ll[1],
-					nodeName: node.info.name,
-					fillClass: "text-" + fill,
-					fillKey: fill,
-				};
-			else
-				return {
-					radius: 0,
-					latitude: 0,
-					longitude: 0
-				};
+			// if(node.geo != null)
+			// 	return {
+			// 		radius: 3,
+			// 		latitude: node.geo.ll[0],
+			// 		longitude: node.geo.ll[1],
+			// 		nodeName: node.info.name,
+			// 		fillClass: "text-" + fill,
+			// 		fillKey: fill,
+			// 	};
+			// else
+			// 	return {
+			// 		radius: 0,
+			// 		latitude: 0,
+			// 		longitude: 0
+			// 	};
 		});
 	}
 
